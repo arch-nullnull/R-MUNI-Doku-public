@@ -1482,8 +1482,7 @@ Das R+MUNI Team besteht in Stage 5 aus folgenden Rollen:
 
   Service User 1 (Claude):
   - AI-Unterstützung im Entwicklungs- und Dokumentationsumfeld
-  - konkrete Atlassian-Rolle wird in Stage 5 geklärt (Rovo AI oder
-    Prozessrolle)
+  - konkrete Atlassian-Rolle wird in Stage 5 geklärt 
   - kein eigenständiger Entscheid ohne Betreiber-Freigabe
 
   Service User 2:
