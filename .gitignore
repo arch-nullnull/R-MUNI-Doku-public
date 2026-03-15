@@ -1,0 +1,72 @@
+# =========================================================
+# R+MUNI Blueprint – .gitignore
+# =========================================================
+# Zweck: Definiert welche Dateien NICHT ins GitHub Repository
+#        eingecheckt werden sollen.
+# Sprache: Deutsch / Kommentare erklären den jeweiligen Block
+# =========================================================
+
+
+# ---------------------------------------------------------
+# [1] LAUFZEIT-ARTEFAKTE & TEMPORÄRE DATEIEN
+#     Werden bei jedem Script-Durchlauf neu erzeugt
+#     → kein Mehrwert im Repo
+# ---------------------------------------------------------
+
+# Temporäre Arbeitsverzeichnisse / OS-Dateien
+Thumbs.db
+desktop.ini
+.DS_Store
+*.tmp
+*.temp
+
+
+# ---------------------------------------------------------
+# [2] Doku-public Unterordner
+#     → werden lokal gehalten, nicht versioniert
+# ---------------------------------------------------------
+
+# 00-governance/
+# 01-principles/
+# 02-how2/
+# 03-roesetta_stone/
+# 04-notes/
+
+# ---------------------------------------------------------
+# [3] OBSIDIAN INTERNE KONFIG
+#     .obsidian Ordner enthält persönliche UI-Einstellungen
+#     → nicht für andere Nutzer relevant
+# ---------------------------------------------------------
+
+# .obsidian/
+
+
+# ---------------------------------------------------------
+# [4] GROSSE BINÄR-DATEIEN / ZIP-PAKETE
+#     R+MUNI_clean.zip und ähnliche Pakete nicht einchecken
+#     → über GitHub Releases verteilen
+# ---------------------------------------------------------
+
+# *.zip
+# *.7z
+# *.rar
+
+# ---------------------------------------------------------
+# [5] VIRTUELLE UMGEBUNGEN & LOKALE PYTHON-SETUP
+# ---------------------------------------------------------
+
+venv/
+# .venv/
+env/
+# *.egg-info/
+
+
+# ---------------------------------------------------------
+# [6] EDITOR-SPEZIFISCH (Notepad++, VS Code, JetBrains)
+# ---------------------------------------------------------
+
+# .vscode/
+# .idea/
+# *.npp_session
+
+
