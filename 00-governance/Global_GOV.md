@@ -3,7 +3,7 @@ R+MUNI GLOBAL GOVERNANCE
 ================================================================================
 Projekt         : R+MUNI Blueprint
 Dokument        : Global_GOV
-Letzte Änderung : 2026-03-09 — Stage 5 Erweiterung (Kapitel 11 + 12)
+Letzte Änderung : 2026-03-18 — Stage 5 Erweiterung (Kapitel 13) + Terminologie User/Kunde
 Erstellt durch  : Markus Resel + Claude (Pair-Session)
 ================================================================================
 
@@ -1270,7 +1270,7 @@ soll.
 
 Feature-Zuwachs kann ausgelöst sein durch:
 - einen Entwicklerwunsch
-- einen Kundenwunsch
+- einen User-Wunsch
 
 Für Feature-Zuwachs gilt:
 - der Wunsch ist explizit zu benennen
@@ -1348,30 +1348,38 @@ Missbrauch von Sprints untergräbt das Lernziel.
 
 
 --------------------------------------------------------------------------------
-11. UMGANG MIT ENDKUNDEN
+11. UMGANG MIT USERN
 --------------------------------------------------------------------------------
 Erweiterung Stage 5 | 2026-03-09
+Terminologie-Korrektur | 2026-03-18
 
 11.1 Zweck dieses Kapitels
 ---------------------------
 Dieses Kapitel definiert die verbindlichen Regeln für den Umgang mit
-Endkunden im R+MUNI Livebetrieb ab Stage 5.
+Usern im R+MUNI Livebetrieb ab Stage 5.
 
 Ziel ist es:
-- einen fairen, ehrlichen und transparenten Umgang mit Kunden sicherzustellen
+- einen fairen, ehrlichen und transparenten Umgang mit allen Usern
+  sicherzustellen
 - klare Erwartungen zu definieren ohne Versprechen zu erzeugen die nicht
   gehalten werden können
-- die Offenheit von R+MUNI als Grundprinzip im Kundenkontakt zu verankern
+- die Offenheit von R+MUNI als Grundprinzip im User-Kontakt zu verankern
+
+Begriffsdefinition:
+  User    = jeder der R+MUNI nutzt — gratis, ohne Bedingung,
+            unabhängig vom Nutzungsumfang
+  Kunde   = wer explizit einen bezahlten Service in Anspruch nimmt
+            (Installation, Wartung, individuelle Begleitung)
 
 
-11.2 Grundhaltung gegenüber Endkunden
----------------------------------------
+11.2 Grundhaltung gegenüber Usern
+-----------------------------------
 R+MUNI ist und bleibt kostenlos. Das ist kein Marketing, sondern Haltung.
 
-Für den Kundenkontakt gilt:
+Für den User-Kontakt gilt:
 - Offenheit und Ehrlichkeit sind nicht verhandelbar
-- Kritik von Kunden ist Feedback — kein Angriff
-- Kein Kunde wird zu einem Upgrade, einer Zahlung oder einer Entscheidung
+- Kritik von Usern ist Feedback — kein Angriff
+- Kein User wird zu einem Upgrade, einer Zahlung oder einer Entscheidung
   gedrängt
 - Der Entwickler behält das Recht situativ zu entscheiden was er annimmt
   und was nicht — Kapazität ist eine legitime Absage
@@ -1379,7 +1387,7 @@ Für den Kundenkontakt gilt:
 
 11.3 Kommunikationskanal
 -------------------------
-Der definierte Kanal für Endkunden-Kommunikation ist das R+MUNI Portal:
+Der definierte Kanal für User-Kommunikation ist das R+MUNI Portal:
   https://ims-blueprint-ticketsystem.atlassian.net/helpcenter/RMNP/
 
 Für das Portal gilt:
@@ -1389,8 +1397,8 @@ Für das Portal gilt:
 - Antworten erfolgen über das Portal — kein E-Mail-Zwang
 
 
-11.4 Umgang mit Kundenanfragen
---------------------------------
+11.4 Umgang mit User-Anfragen
+-------------------------------
 Für eingehende Anfragen gilt:
 
   Bug:
@@ -1401,7 +1409,7 @@ Für eingehende Anfragen gilt:
   Feature Request:
   - wird gesammelt und bewertet
   - kein Automatismus zur Umsetzung
-  - Kundenwunsch kann Sprint-Auslöser sein (GOV 10.5)
+  - User-Wunsch kann Sprint-Auslöser sein (GOV 10.5)
 
   DEV Anfrage:
   - wird gelesen und situativ bewertet
@@ -1410,8 +1418,8 @@ Für eingehende Anfragen gilt:
   - keine implizite Zusage durch Annahme der Anfrage
 
 
-11.5 Kundenfeedback als Blueprint-Input
------------------------------------------
+11.5 User-Feedback als Blueprint-Input
+----------------------------------------
 Feedback aus dem Livebetrieb darf:
 - in Stage-5-Entwicklung einfließen
 - als Grundlage für GOV-Erweiterungen dienen
@@ -1429,7 +1437,7 @@ Der Entwickler lebt von freiwilligen Beiträgen.
 
 R+MUNI wäre ohne Archi nicht möglich — das ist keine Floskel, sondern Fakt.
 
-Für jeden Beta-Kunden der Archi produktiv nutzt gilt daher als Grundsatz:
+Für jeden User der Archi produktiv nutzt gilt daher als Grundsatz:
 - Der Entwickler (EUMAXL) vermittelt bewusst ein Geschenk-Abo an den
   Archi-Entwickler als Zeichen der Wertschätzung
 - Das ist keine Marketing-Maßnahme und kein Zwang
@@ -1440,16 +1448,16 @@ Kurzform: Support ist kein Mord — und wer gute Werkzeuge nutzt,
           sollte denen danken die sie bauen.
 
 
-11.7 Optionales Kunden-Atlassian
-----------------------------------
-Kunden können ein eigenes Atlassian Free Bundle aufbauen.
+11.7 Optionales Atlassian für User
+------------------------------------
+User können ein eigenes Atlassian Free Bundle aufbauen.
 
 Dafür gilt:
 - es ist eine Option, kein Standard und kein Zwang
-- der Entwickler kann dabei begleitend unterstützen — als bewusste Leistung
-- R+MUNI bleibt das Tool, der Entwickler vermittelt bei Bedarf
-  spezialisierte Atlassian-Expertise weiter
-- kein Kunde wird zu einem kostenpflichtigen Atlassian-Plan gedrängt
+- der Entwickler unterstützt bei Basis-Fragen im Rahmen seiner Möglichkeiten
+- für komplexe Atlassian-Themen vermittelt der Entwickler bei Bedarf
+  spezialisierte Expertise weiter — Atlassian ist nicht sein Kerngeschäft
+- kein User wird zu einem kostenpflichtigen Atlassian-Plan gedrängt
 
 
 --------------------------------------------------------------------------------
@@ -1482,13 +1490,13 @@ Das R+MUNI Team besteht in Stage 5 aus folgenden Rollen:
 
   Service User 1 (Claude):
   - AI-Unterstützung im Entwicklungs- und Dokumentationsumfeld
-  - konkrete Atlassian-Rolle wird in Stage 5 geklärt 
+  - konkrete Atlassian-Rolle wird in Stage 5 geklärt
   - kein eigenständiger Entscheid ohne Betreiber-Freigabe
 
   Service User 2:
   - Reserve — noch nicht vergeben
 
-  Kunden und weitere Team-User:
+  User und weitere Team-Mitglieder:
   - nach Bedarf, innerhalb Free-Plan-Limits
 
 
@@ -1530,8 +1538,189 @@ Für GOV-Änderungen gilt:
 - Team-Mitglieder können GOV-Änderungen vorschlagen — entscheiden nicht
 
 
+--------------------------------------------------------------------------------
+13. USER-FEEDBACK-KANAL UND EXTERNE ERKENNTNISQUELLEN
+--------------------------------------------------------------------------------
+Erweiterung Stage 5 | 2026-03-18
+
+13.1 Zweck dieses Kapitels
+---------------------------
+Dieses Kapitel definiert die verbindlichen Regeln für den Umgang mit
+Erkenntnissen aus externen Quellen — insbesondere aus Umgebungen in denen
+der Betreiber in einer anderen Rolle agiert als der R+MUNI Entwicklerrolle.
+
+Ziel ist es:
+- wertvolle Praxiserkenntnisse strukturiert und kontrolliert nutzbar zu machen
+- Rollenvermischung und unkontrollierten Wissenstransfer zu verhindern
+- die Anonymisierungspflicht gegenüber Dritten verbindlich zu verankern
+- einen klaren Kanal für User-orientierte Dokumentation zu etablieren
+
+
+13.2 Definition: Externe Erkenntnisquelle
+------------------------------------------
+Eine externe Erkenntnisquelle ist jede Informationsquelle die außerhalb der
+R+MUNI Entwicklerrolle entsteht.
+
+Im aktuellen Kontext gilt dies insbesondere für:
+- Erfahrungen des Betreibers in der Rolle als Beta-Tester in externen
+  Atlassian-Umgebungen
+- Beobachtungen aus Begleitprojekten
+- Erkenntnisse aus Compliance- oder regulierten Umgebungen in denen
+  Claude oder andere AI-Tools nicht eingesetzt werden dürfen
+
+Externe Erkenntnisquellen sind wertvoller Rohstoff — aber kein direkter
+Blueprint-Input.
+
+
+13.3 Kennzeichnungspflicht
+---------------------------
+Jede externe Erkenntnisquelle ist beim Einbringen in den R+MUNI Kontext
+explizit zu kennzeichnen.
+
+Verbindliche Kennzeichnung:
+- Dokumente: Prefix MLAT- im Dateinamen oder Titel
+- Chat-Eingaben: Tag [MLAT] für reine Erfahrungsberichte
+- Chat-Eingaben: Tag [MLAT→RMUNI] für explizit gewünschten Transfer
+
+Ohne Kennzeichnung gilt jede Information als R+MUNI-intern und wird
+entsprechend behandelt.
+
+Die Kennzeichnung ist Voraussetzung für kontrollierten Transfer.
+Unkennzeichnete externe Inhalte dürfen nicht in R+MUNI-Artefakte einfließen.
+
+
+13.4 Anonymisierungspflicht
+-----------------------------
+Für alle externen Erkenntnisquellen gilt eine strikte Anonymisierungspflicht.
+
+Es dürfen in keinem R+MUNI-Artefakt, keiner Dokumentation und keinem
+öffentlich zugänglichen Output erscheinen:
+- echte Namen von Personen aus externen Umgebungen
+- Namen von Organisationen aus externen Projekten
+- interne Bezeichnungen, Strukturen oder Konfigurationsdetails
+  externer Systeme
+- Rohdaten aus externen Umgebungen
+
+Zulässige generische Ersetzungen:
+- Personen      → User, Team-Mitglied, Stakeholder, Anwender
+- Organisationen → nicht nennen — nur Erkenntnistyp beschreiben
+- Systeme       → Beta-Umgebung, Testinstanz, externe Plattform
+
+Die Anonymisierungspflicht gilt auch dann wenn der Betreiber selbst die
+Originalbezeichnungen im Chat nennt. Claude wendet die Anonymisierung
+automatisch an — der Betreiber ist das Kontrollorgan.
+
+
+13.5 Transfer-Logik
+---------------------
+Der Transfer von externen Erkenntnissen in R+MUNI-Artefakte folgt einer
+expliziten Dreistufenlogik:
+
+  Stufe 1 — Erfahrungsbericht [MLAT]:
+  - Erkenntnis wird aufgenommen und intern verarbeitet
+  - kein automatischer Transfer in R+MUNI-Strukturen
+  - Claude speichert als verfügbares Kontextwissen
+
+  Stufe 2 — Transfer-Anfrage [MLAT→RMUNI]:
+  - Betreiber löst explizit einen Transfer aus
+  - Claude übersetzt die Erkenntnis in R+MUNI-konforme Formulierung
+  - Rohdaten, Namen und Strukturdetails werden dabei herausgefiltert
+  - nur die transferierbare Prozess- oder Architektur-Erkenntnis fließt ein
+
+  Stufe 3 — Freigabe durch Betreiber:
+  - transferiertes Ergebnis wird vom Betreiber geprüft und freigegeben
+  - erst nach Freigabe wird es in R+MUNI-Dokumentation übernommen
+  - kein automatischer Einbau ohne explizite Betreiber-Freigabe
+
+Kein Transfer ohne expliziten Auslöser durch den Betreiber.
+
+
+13.6 USER-Dokumentationsreihe
+-------------------------------
+Erkenntnisse aus externen Quellen die für User relevant sind
+werden in einer eigenen Dokumentationsreihe geführt: USER-Reihe.
+
+Für die USER-Reihe gilt:
+- Kürzel: USER
+- Ablageort: eigener Ordner im Blueprint — Bereich interne Dokumentation
+- Charakter: anwenderorientiert, nicht technisch
+- Inhalte: Principles und How2-Dokumente für User
+- Anonymisierungspflicht gilt uneingeschränkt
+
+Die USER-Reihe ist interner Entwicklungs-Input — sie wird nicht
+öffentlich gestellt und nicht direkt ausgegeben.
+Sie dient als Vorarbeit für spätere User-Kommunikation.
+
+USER-Dokumente fließen nicht automatisch in den R+MUNI Blueprint ein.
+Jede Übernahme erfordert explizite Betreiber-Freigabe (GOV 13.5 Stufe 3).
+
+
+13.7 Kontext-Hygiene bei eingeschränktem AI-Einsatz
+-----------------------------------------------------
+In Umgebungen in denen Claude oder andere AI-Tools aus Compliance-Gründen
+nicht eingesetzt werden dürfen gilt für Dokumente die später mit Claude
+weiterverarbeitet werden sollen:
+
+  Dokumente müssen so aufgebaut sein dass:
+  - der Kontext ohne mündliche Erklärung erschließbar ist
+  - jedes Dokument eine klare Zweck- und Quellenangabe enthält
+  - Entscheidungen und Begründungen explizit im Dokument stehen
+  - keine impliziten Annahmen vorausgesetzt werden
+
+  Bewährte Struktur für AI-fähige Dokumente:
+  - Zweck / Kontext (1 Absatz)
+  - Ausgangslage (Was war gegeben)
+  - Erkenntnis / Entscheidung (Was wurde getan / erkannt)
+  - Transferierbarkeit (Was davon ist allgemein gültig)
+  - Anonymisierungshinweis wenn relevant
+
+Diese Struktur verhindert Kontext-Drift beim späteren Einbringen
+in Claude-gestützte Entwicklungssessions.
+
+
+13.8 Rollentrennung als Governance-Prinzip
+-------------------------------------------
+Der Betreiber agiert in mehreren Rollen gleichzeitig:
+- R+MUNI Entwickler / DEV
+- Beta-Tester in externen Umgebungen
+- PreSales / Berater
+
+Diese Rollen sind strikt getrennt zu halten.
+
+Für die Rollentrennung gilt:
+- Erkenntnisse aus einer Rolle fließen nicht automatisch in eine andere
+- der Betreiber ist Kontrollorgan für die Einhaltung der Trennung
+- Claude folgt der Kennzeichnungslogik (GOV 13.3) und mischt Rollen nicht
+- bei Unklarheit über die aktive Rolle fragt Claude nach
+
+Rollenvermischung ohne explizite Kennzeichnung ist unzulässig.
+
+
+13.9 Verhältnis zu bestehenden GOV-Kapiteln
+--------------------------------------------
+Dieses Kapitel ergänzt:
+- GOV 11 (Umgang mit Usern): USER-Reihe als vorgelagerte Entwicklungsebene
+- GOV 12 (Team): Betreiber-Rolle als Multi-Rollen-Kontext anerkannt
+- GOV 10 (Sprints): USER-Erkenntnisse können Sprint-Auslöser sein (GOV 10.5)
+
+Dieses Kapitel verändert keine bestehenden Kapitel.
+Es ist additiv und erzeugt keine Präzedenzwirkung für andere Regeln.
+
+
+13.10 Abschluss des Kapitels
+------------------------------
+Dieses Kapitel definiert die verbindlichen Regeln für den Umgang mit
+externen Erkenntnisquellen und den USER-Feedback-Kanal im R+MUNI Blueprint.
+
+Es schafft die Governance-Grundlage für:
+- die AI_DRIVEN_DEV_METHODE Erweiterung (Rollen-Parallelbetrieb)
+- die USER-Dokumentationsreihe
+- den kontrollierten Transfer-Workflow
+
+
 ================================================================================
 R+MUNI GLOBAL GOVERNANCE
-Kapitel 1-9 (Stage 3) | Kapitel 10 (Stage 3) | Kapitel 11-12 (Stage 5 | 2026-03-09)
+Kapitel 1-9 (Stage 3) | Kapitel 10 (Stage 3) | Kapitel 11-12 (Stage 5 | 2026-03-09) | Kapitel 13 (Stage 5 | 2026-03-18)
+Terminologie User/Kunde vereinheitlicht | 2026-03-18
 R+MUNI Blueprint | Markus Resel + Claude (Pair-Session)
 ================================================================================
