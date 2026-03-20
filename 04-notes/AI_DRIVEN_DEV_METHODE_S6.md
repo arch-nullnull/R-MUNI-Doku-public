@@ -2,8 +2,8 @@
 AI DRIVEN DEVELOPMENT – METHODE R+MUNI
 ================================================================================
 Erstellt    : 2026-03-06
-Letzte Änderung : 2026-03-18 — Erweiterung Kapitel 11-13
-Autor       : Markus Resel
+Letzte Änderung : 2026-03-20 — Erweiterung Kapitel 9 + 15
+Autor       : EUMAXL
 Charakter   : Persönliche Arbeitsmethode / Entwicklungsphilosophie
 Ablageort   : 00-concept/01-principles/AI_DRIVEN_DEV_METHODE.txt
 ================================================================================
@@ -290,7 +290,12 @@ Prinzip:
 ================================================================================
 
   - KI-Verfügbarkeit als Abhängigkeit (kein Internet = kein Entwickeln)
-  - Kontextfenster der KI begrenzt (Projektfolder-Disziplin notwendig)
+  - Kontextfenster der KI ist groß — aber Aufmerksamkeit driftet bei hohem
+    Volumen: nicht zu wenig laden (Drift durch fehlenden Kontext), nicht zu
+    viel laden (Drift durch Überlastung) — Mittelmaß-Prinzip siehe Kap. 15.1
+  - Dauerhaft aktive Skills belegen Kontextplatz und können andere Regeln
+    überschatten — Skills nur bei Bedarf aktivieren, danach deaktivieren
+    (siehe Kap. 15.3)
   - Keine automatische Versionierung (manuelle Disziplin erforderlich)
   - Testing bleibt beim Entwickler (KI kann nicht lokal testen)
   - Komplexe Fehlerbilder benötigen gute Fehlerbeschreibung
@@ -644,8 +649,127 @@ Praxisregel:
 
 
 ================================================================================
+15. KONTEXT-OPTIMIERUNG — PRAXISERKENNTNISSE AUS STAGE 6
+================================================================================
+Erweiterung Stage 6 | 2026-03-20
+
+15.1 Das Mittelmaß-Prinzip
+---------------------------
+Zu wenig Kontext führt zu Drift — Claude trifft implizite Annahmen.
+Zu viel Kontext führt zu Drift — Claude verliert Orientierung im Volumen.
+
+Das optimale Mittelmaß für R+MUNI Sessions:
+
+  IMMER laden:
+  - Freeze-Dokument des aktuellen Stage (gemeinsame Wahrheit)
+  - Stage-Ziele (Ausrichtung)
+  - GOV (bindende Regeln)
+  - Relevante Principles-Datei für den aktuellen Task
+
+  NUR BEI BEDARF laden:
+  - Scripts — nur wenn aktiv daran gearbeitet wird
+  - How2-Dokumente — nur wenn konkrete Anwendungsfragen entstehen
+  - Sprint-Doku — nur wenn Dokumentationsarbeit ansteht
+
+  NICHT LADEN:
+  - Veraltete .md die durch Templates ersetzt wurden (siehe 15.3)
+  - Scripts aus anderen Flow-Serien die nicht im Scope sind
+  - Mehrere Sprint-Dokus gleichzeitig
+
+Prinzip:
+  Doku gibt Orientierung — Scripts sind Artefakte.
+  Claude braucht Orientierung um sinnvoll zu arbeiten.
+  Artefakte werden nur geladen wenn sie aktiv bearbeitet werden.
+
+15.2 Memory als Anker für kritische Regeln
+-------------------------------------------
+Claude verfügt über eine session-übergreifende Memory.
+Diese greift in jedem neuen Chat automatisch — noch bevor Dateien geladen werden.
+
+Die Memory ist der stärkste verfügbare Anker für Regeln die niemals driften dürfen.
+
+Was in die Memory gehört:
+  - Anonymisierungsregel (kein echter Name, EUMAXL / Betakunde)
+  - Andere projektübergreifende Regeln die keine Ausnahmen dulden
+
+Was NICHT in die Memory gehört:
+  - Inhaltliche Projektdetails (gehören in Projektfolder)
+  - Stage-spezifische Regeln (gehören in Freeze / GOV)
+  - Technische Konventionen (gehören in Blueprint Skill)
+
+Memory verwalten:
+  - EUMAXL kann jederzeit sagen: "Zeig mir deine Memory"
+  - Einträge können per Chat-Anweisung ergänzt, ersetzt oder gelöscht werden
+  - In Claude.ai Einstellungen unter "Erinnerungen" einsehbar und löschbar
+
+Praxisregel:
+  Wenn eine Regel dreimal korrigiert werden musste — gehört sie in die Memory.
+  Wenn sie einmal verletzt wurde — gehört sie in den Skill.
+
+15.3 Skills gezielt aktivieren — nicht dauerhaft laden
+-------------------------------------------------------
+Skills sind mächtige Kontexterweiterungen — aber jeder aktive Skill
+belegt Platz auf dem Arbeitstisch und beeinflusst Claudes Aufmerksamkeit.
+
+Risiko dauerhaft aktiver Skills:
+  - Ein umfangreicher Skill kann andere Regeln und Prinzipien überschatten
+  - Skills die aus externen Quellen (URLs, Repos) befüllt wurden
+    bringen fremden Kontext mit — teils tiefer als erwartet
+  - Skill-Kontext und Projektkontext können sich gegenseitig stören
+
+Praxisregel für R+MUNI:
+  Skills werden nur aktiviert wenn der zugehörige Kontext aktiv gebraucht wird.
+  Nach Abschluss der Arbeit: Skill wieder deaktivieren.
+
+  Beispiel:
+  - jArchi Skill → nur aktivieren wenn aktiv mit Archi 5.8 gearbeitet wird
+  - Nach der Archi-Session → deaktivieren
+
+Welche Skills gibt es und wann aktivieren:
+  - r-muni-blueprint   → immer aktiv (Basis-Konventionen)
+  - mlat-context-handler → aktiv wenn MLAT-Transfer ansteht
+  - jArchi             → nur aktiv bei Archi 5.8 Arbeit, danach deaktivieren
+  - Weitere Skills     → nach gleichem Prinzip: Bedarf ja → aktivieren, sonst aus
+
+Skill verwalten:
+  In Claude.ai unter Einstellungen → Skills / Projekte
+  EUMAXL entscheidet welche Skills aktiv sind — nicht Claude.
+
+15.4 Template-first — veraltete .md nicht mehr laden
+------------------------------------------------------
+Für wiederkehrende Dokumenttypen existieren in Stage 6 Templates.
+Diese Templates ersetzen das Laden alter .md-Dokumente als Referenz.
+
+Vorgehen:
+  1. EUMAXL gibt das Template für den gewünschten Dokumenttyp
+  2. Claude befüllt das Template auf Basis des aktuellen Auftrags
+  3. Das fertige Dokument wird abgelegt
+
+Vorteil:
+  - Kein veralteter .md-Kontext der Claude in falsche Richtungen zieht
+  - Template ist per Definition aktuell und GOV-konform
+  - Weniger Dateien im Projektfolder = saubererer Kontext
+
+Welche Templates existieren (Stage 6):
+  - Stage_Ziele_Template_S6.md
+  - Rosetta-Stone_Template_S6.md
+  - how2_USER_Template_S6.md
+  - how2_DEV_Template_S6.md
+  - GOV_Global_Template_S6.md
+  - Sprint-DEV-BACKLOG_Template_S6.md
+  - Sprint-DEV-Doku_Template_S6.md
+  - Sprint-DEV-Doku_TMP-Reihe_S6.md
+  - TMP_How2_DEV_S6.md
+
+Praxisregel:
+  Gibt es ein Template für den Dokumenttyp — Template laden, kein altes .md.
+  Gibt es kein Template — altes .md als Referenz ist zulässig, aber kennzeichnen.
+
+
+================================================================================
 END OF DOCUMENT
 AI Driven Development – Methode R+MUNI | 2026-03-06
 Erweiterung Kapitel 11-13 | 2026-03-18
 Erweiterung Kapitel 9 + Kapitel 14 | 2026-03-19
+Erweiterung Kapitel 15 | 2026-03-20
 ================================================================================
