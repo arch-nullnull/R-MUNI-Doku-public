@@ -294,6 +294,11 @@ Prinzip:
   - Keine automatische Versionierung (manuelle Disziplin erforderlich)
   - Testing bleibt beim Entwickler (KI kann nicht lokal testen)
   - Komplexe Fehlerbilder benötigen gute Fehlerbeschreibung
+  - Claude kann Projektfolder-Inhalt und GitHub-Repo-Inhalt nicht
+    automatisch auf Übereinstimmung prüfen — der Sync-Status ist
+    für Claude ohne expliziten Fetch-Auftrag nicht sichtbar
+  - Ein Fetch-Auftrag auf eine externe URL öffnet eine neue
+    Kontextebene ohne Bezug zur laufenden Session — bricht den Fluss
 
 
 ================================================================================
@@ -588,7 +593,59 @@ Jedes USER-Dokument trägt einen Hinweis:
 
 
 ================================================================================
+14. CLAUDE UND EXTERNE QUELLEN — GRENZEN DER KONTEXTVERBINDUNG
+================================================================================
+
+14.1 Ausgangslage
+------------------
+Claude arbeitet im R+MUNI Kontext primär mit dem Projektfolder als
+gemeinsamer Wahrheit (siehe Kapitel 6.1). Daneben existieren externe
+Quellen wie GitHub-Repos, Confluence-Spaces und andere URLs.
+
+Die Frage ob Projektfolder-Inhalt und externer Repo-Inhalt übereinstimmen
+kann Claude nicht automatisch beantworten.
+
+14.2 Was Claude kann und nicht kann
+-------------------------------------
+Claude KANN:
+  - Projektfolder-Inhalte lesen und verarbeiten
+  - Bekannte URLs aus dem Gesprächskontext referenzieren
+  - Auf expliziten Auftrag hin eine URL fetchen und lesen
+
+Claude KANN NICHT:
+  - Automatisch prüfen ob Projektfolder und GitHub-Repo synchron sind
+  - Den Sync-Status zwischen lokalem Stand und externem Repo beurteilen
+  - Erkennen ob eine Datei im Folder bereits gepusht wurde oder veraltet ist
+
+14.3 Das Fetch-Problem
+------------------------
+Ein Fetch-Auftrag auf eine externe URL ist technisch möglich —
+erzeugt aber eine neue Kontextebene ohne Bezug zur laufenden Session.
+
+Konsequenz:
+  - Der Gesprächsfluss wird unterbrochen
+  - Claude verliert den roten Faden der aktuellen Arbeit
+  - Das Ergebnis des Fetch steht isoliert ohne Sessionkontext
+
+Praxisregel:
+  Fetches gehören an den Anfang einer Session — nicht mitten hinein.
+  Wer mitten in einer Arbeitssession externe Inhalte prüfen will,
+  öffnet besser eine separate Session dafür.
+
+14.4 Konsequenz für die Arbeitsweise
+--------------------------------------
+  - GitHub-Sync und Repo-Konsistenz prüft EUMAXL selbst
+  - Claude wird nicht für Sync-Verifikation eingesetzt
+  - Wenn Repo-Inhalt relevant ist: vor Session-Start fetchen und
+    als Kontext in den Projektfolder aufnehmen
+  - E-Mails mit Links auf eigene Repos werden von EUMAXL
+    selbst zusammengestellt — Claude liefert den Inhalt,
+    EUMAXL kennt den aktuellen Repo-Stand
+
+
+================================================================================
 END OF DOCUMENT
 AI Driven Development – Methode R+MUNI | 2026-03-06
 Erweiterung Kapitel 11-13 | 2026-03-18
+Erweiterung Kapitel 9 + Kapitel 14 | 2026-03-19
 ================================================================================
