@@ -1,13 +1,18 @@
 ================================================================================
 HOW2 – BETA-FEEDBACK SAMMELN UND BEWERTEN (EUMAXL-PROZESS)
 ================================================================================
-Projekt             : R+MUNI Blueprint
-Dokument            : HOW2_S6-Z1_BetaFeedback_S6
-Datum               : 2026-03-21
-Stage               : S6 – AKTIV
-Status              : Dokumentiert (bestehender Prozess)
-Erstellt durch      : EUMAXL + Claude (Pair-Session)
-Bezug               : STAGE6_ZIELE.md (S6-Z1)
+Projekt         : R+MUNI Blueprint
+Dokument        : HOW2_S6-Z1_BetaFeedback_S6
+Tag             : #dev #how2 #betafeedback #s6
+Datum           : 2026-03-26
+Stage           : S8 — AKTIV
+Status          : AKTIV
+Verantwortlich  : EUMAXL
+Review          : —
+Jira-Sync       : NEIN
+Erstellt        : 2026-03-21
+Bezug           : STAGE6_ZIELE.md (S6-Z1)
+================================================================================
 
 ================================================================================
 ZWECK DIESES DOKUMENTS

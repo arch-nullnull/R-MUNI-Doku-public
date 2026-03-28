@@ -5,7 +5,7 @@ Projekt         : R+MUNI Blueprint
 Dokument        : ASSOCIATE_How2
 Tag             : #associate #how2 #<thema>
 Datum           : <YYYY-MM-DD>
-Stage           : S7 — AKTIV
+Stage           : S8 — AKTIV
 Status          : <ENTWURF / AKTIV / VERALTET>
 Verantwortlich  : EUMAXL
 Review          : <YYYY-MM-DD>
@@ -100,5 +100,5 @@ Bitte beschreibe:
 
 
 ================================================================================
-<THEMA>_How2 | ASSOCIATE | S7 | <YYYY-MM-DD> | R+MUNI Blueprint
+<THEMA>_How2 | ASSOCIATE | S8 | <YYYY-MM-DD> | R+MUNI Blueprint
 ================================================================================

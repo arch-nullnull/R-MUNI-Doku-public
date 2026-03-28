@@ -2,8 +2,8 @@
 BETA_OFFBOARDING – PRINCIPLES
 ================================================================================
 Projekt         : R+MUNI Blueprint
-Dokument        : BETA_OFFBOARDING_principles_S7
-Tag             : #dev #principles #beta #offboarding #s7
+Dokument        : BETA_OFFBOARDING_principles_S8
+Tag             : #dev #principles #beta #offboarding #s7 #s8
 Datum           : 2026-03-26
 Stage           : S8 — AKTIV
 Status          : AKTIV
@@ -11,7 +11,7 @@ Verantwortlich  : EUMAXL
 Review          : —
 Jira-Sync       : NEIN
 Erstellt        : 2026-03-21
-Ablageort       : R+MUNI Doku-public\01-principles\BETA_OFFBOARDING_principles_S7.md
+Ablageort       : R+MUNI Doku-public\01-principles\BETA_OFFBOARDING_principles_S8.md
 ================================================================================
 
 
