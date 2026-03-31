@@ -1,17 +1,15 @@
 ================================================================================
-BETA_OFFBOARDING – PRINCIPLES
+BETA_OFFBOARDING — PRINCIPLES (DEV)
 ================================================================================
 Projekt         : R+MUNI Blueprint
-Dokument        : BETA_OFFBOARDING_principles_S7
-Tag             : #dev #principles #beta #offboarding #s7
-Datum           : 2026-03-26
-Stage           : S8 — AKTIV
+Dokument        : BETA_OFFBOARDING_principles_DEV_S101
+Tag             : #dev #principles #beta #offboarding #s101
+Datum           : 2026-03-31
+Stage           : S1.01 — AKTIV
 Status          : AKTIV
 Verantwortlich  : EUMAXL
 Review          : —
 Jira-Sync       : NEIN
-Erstellt        : 2026-03-21
-Ablageort       : R+MUNI Doku-public\01-principles\BETA_OFFBOARDING_principles_S7.md
 ================================================================================
 
 
@@ -214,14 +212,14 @@ Erstanwendung dieses Sonderfalls: Betakunde_01 — Stage 7.
 ================================================================================
 BEZÜGE
 ================================================================================
-[[GOV_Global_S6]]                          normative Grundlage
-[[TOOLBAUKASTEN_principles_S6]]            Tier-Struktur MINIMAL/DEFAULT/ADDON
-[[INST_principles_S5]]                     Baum-Modell, Exitpoint-Logik
-[[BETA_ONBOARDING_Atlassian_Zugriffsmodell]] Onboarding-Gegenstück
-[[FREEZE-6_konsolidiert]]                  Ausgangszustand — Status Betakunde_01
-[[STAGE7_ZIELE_S7]]                        S7-Z1 Betakunde_01 Offboarding
+[[Global_GOV_DEV_S101]]                          normative Grundlage
+[[TOOLBAUKASTEN_principles_S6]]                  Tier-Struktur MINIMAL/DEFAULT/ADDON
+[[INST_principles_S5]]                           Baum-Modell, Exitpoint-Logik
+[[BETA_ONBOARDING_Atlassian_Zugriffsmodell]]     Onboarding-Gegenstück
+[[FREEZE-6_konsolidiert]]                        Ausgangszustand — Status Betakunde_01
+[[STAGE7_ZIELE_S7]]                              S7-Z1 Betakunde_01 Offboarding
 
 
 ================================================================================
-BETA_OFFBOARDING_principles | S7 | 2026-03-21 | R+MUNI Blueprint
+BETA_OFFBOARDING_principles_DEV | S1.01 | 2026-03-31 | R+MUNI Blueprint
 ================================================================================

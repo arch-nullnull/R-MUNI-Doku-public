@@ -10,8 +10,8 @@ Status          : AKTIV
 Verantwortlich  : EUMAXL
 Review          : —
 Jira-Sync       : NEIN
-Letzte Änderung : 2026-03-29 — S101-Resync: Header S101-konform, Kap. 15 [NEU S101] | zuvor: 2026-03-27 — S8-Update: Kap. 10 erweitert, Kap. 13 Terminologie, Kap. 14+15 neu | 2026-03-26 Header S8-konform | 2026-03-18 Stage 5 Erweiterung (Kapitel 13)
-Erstellt durch  : Markus Resel + Claude (Pair-Session)
+Letzte Änderung : 2026-03-31 — Kap. 16 [NEU S101] Naming Konventionen, Realname-Fix GOV 13.4 | zuvor: 2026-03-29 — S101-Resync: Header S101-konform, Kap. 15 [NEU S101] | 2026-03-27 — S8-Update: Kap. 10 erweitert, Kap. 13 Terminologie, Kap. 14+15 neu | 2026-03-26 Header S8-konform | 2026-03-18 Stage 5 Erweiterung (Kapitel 13)
+Erstellt durch  : EUMAXL + Claude (Pair-Session)
 ================================================================================
 
 ---
@@ -1997,12 +1997,111 @@ Es schafft die Governance-Grundlage für:
 - die AI_DRIVEN_DEV_METHODE (operativer Anwendungsrahmen)
 
 
+--------------------------------------------------------------------------------
+16. NAMING KONVENTIONEN                                          [NEU S101]
+--------------------------------------------------------------------------------
+Erweiterung Stage 1.01 | 2026-03-31
+
+16.1 Zweck dieses Kapitels
+---------------------------
+Dieses Kapitel verankert die verbindlichen Naming-Konventionen des
+R+MUNI Blueprint normativ in der Governance.
+
+Ziel ist es:
+- implizites Betreiber-Wissen explizit und nachvollziehbar zu machen
+- konsistente Benennung über alle Kontexte sicherzustellen
+- Drift-Risiko bei wachsendem DEV-Betrieb zu verhindern
+
+Dieses Kapitel definiert Prinzipien und Regeln.
+Die operative Ablagestruktur und File-Konventionen im Detail sind
+Single Source of Truth in [[naming_and_structure_S101]].
+
+
+16.2 Sprachprinzip: Denglish als bewusste Entscheidung
+--------------------------------------------------------
+R+MUNI verwendet konsequent Denglish.
+
+Für die Sprachwahl gilt:
+- Englische Begriffe dort wo sie etabliert und präziser sind
+  (Stage, Freeze, AccessLevel, Blueprint, Sprint, Associate)
+- Deutsche Begriffe dort wo sie natürlicher oder klarer sind
+  (Betreiber, Grenzbereich, Ablage, Erweiterung)
+- Mischen innerhalb eines Dokuments ist zulässig — wenn konsistent
+  im jeweiligen Kontext angewendet
+
+Denglish ist keine Inkonsistenz, sondern eine dokumentierte Entscheidung.
+Erzwungene Eindeutschung oder Einenglichung ist unzulässig.
+
+
+16.3 Property-Naming: CamelCase
+---------------------------------
+Properties im Architekturmodell folgen der CamelCase-Konvention.
+
+Für Property-Namen gilt:
+- kein Leerzeichen
+- kein Underscore
+- kein Bindestrich
+- erster Buchstabe jedes Teilworts groß
+
+Beispiele:
+  AccessLevel      ✓
+  3PartyID         ✓ (Referenz-Property — bestehend)
+  SourceModel      ✓
+  access_level     ✗ unzulässig
+  Access Level     ✗ unzulässig
+
+Property-Werte mit kontrolliertem Vokabular werden in GROSSBUCHSTABEN
+geschrieben:
+  AccessLevel-Werte: INTERN · PUBLIC · GRENZBEREICH
+
+Diese Konvention gilt für alle Properties ab Stage 7.
+Bestehende Properties vor Stage 7 sind read-only — kein Eingriff.
+
+
+16.4 File-Naming: Verweis auf naming_and_structure
+----------------------------------------------------
+File-Naming-Konventionen (Suffix-Logik, Stage-Herkunft, Rollenprefix,
+Pendant-Logik DEV/ASSOCIATE) sind vollständig dokumentiert in:
+
+  [[naming_and_structure_S101]]
+
+Die GOV verankert das Prinzip: File-Namen sind deskriptiv, eindeutig
+und tragen immer einen Stage-Suffix. Details und Beispiele: siehe dort.
+
+
+16.5 Verhältnis zu bestehenden GOV-Kapiteln
+--------------------------------------------
+Dieses Kapitel ergänzt:
+- GOV 9.4 (Namen): Naming als Hilfsmittel — CamelCase als Umsetzung
+- GOV 10.13 (Stage-Bezeichnungskonvention): Stage-Suffix als Teil
+  des File-Naming-Prinzips
+- GOV 15.3 (Explizitheit): Naming-Konventionen als Explizitheitspflicht
+
+Dieses Kapitel verändert keine bestehenden Kapitel.
+Es ist additiv und erzeugt keine Präzedenzwirkung für andere Regeln.
+
+Backlog-Ursprung: [[Sprint-DEV-BACKLOG_GOV-NamingKonventionen_S8]]
+Status: UMGESETZT — Property-Naming und Denglish in GOV verankert,
+        File-Naming per Verweis auf naming_and_structure_S101 geregelt.
+
+
+16.6 Abschluss des Kapitels
+-----------------------------
+Dieses Kapitel verankert die verbindlichen Naming-Konventionen normativ
+in der R+MUNI Governance.
+
+Es schafft die Grundlage für:
+- konsistente Property-Benennung im Architekturmodell
+- drift-freie File-Benennung über alle Dokumentreihen
+- onboarding-fähige Explizitheit ohne implizites Betreiber-Wissen
+
+
 ================================================================================
 R+MUNI GLOBAL GOVERNANCE — DEV_S101
-Kapitel 1-9 (Stage 3) | Kapitel 10 (Stage 3, erweitert Stage 8) | Kapitel 11-12 (Stage 5 | 2026-03-09) | Kapitel 13 (Stage 5 | 2026-03-18, Terminologie Stage 8 | 2026-03-27) | Kapitel 14 (Stage 8 | 2026-03-27) | Kapitel 15 (Stage 1.01 | 2026-03-29)
+Kapitel 1-9 (Stage 3) | Kapitel 10 (Stage 3, erweitert Stage 8) | Kapitel 11-12 (Stage 5 | 2026-03-09) | Kapitel 13 (Stage 5 | 2026-03-18, Terminologie Stage 8 | 2026-03-27) | Kapitel 14 (Stage 8 | 2026-03-27) | Kapitel 15 (Stage 1.01 | 2026-03-29) | Kapitel 16 (Stage 1.01 | 2026-03-31)
 Terminologie User/Kunde vereinheitlicht | 2026-03-18
 USER-Reihe zu ASSOCIATE-Reihe aktualisiert | 2026-03-27
 DEV_S101-Resync: Header S101-konform, Kap. 15 neu | 2026-03-29
 MLAT → CUSTO, Anonymisierungspflicht systemweit, Beta-Tester → Kundensupport | 2026-03-29
-R+MUNI Blueprint | Markus Resel + Claude (Pair-Session)
+R+MUNI Blueprint | EUMAXL + Claude (Pair-Session)
 ================================================================================
