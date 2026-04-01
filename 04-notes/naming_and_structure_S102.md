@@ -2,16 +2,17 @@
 NAMING AND STRUCTURE — R+MUNI BLUEPRINT
 ================================================================================
 Projekt         : R+MUNI Blueprint
-Dokument        : naming_and_structure_S101
+Dokument        : naming_and_structure_S102
 Tag             : #naming #structure #ablage #s101 #global
 Datum           : 2026-03-31
-Stage           : S1.01 — AKTIV
+Stage           : S1.02 — AKTIV
 Status          : AKTIV
 Verantwortlich  : EUMAXL
 Review          : —
 Jira-Sync       : NEIN
-Ablageort       : C:\Prototyping\R+MUNI Doku\R+MUNI Doku-internal\04-notes\naming_and_structure_S101.md
+Ablageort       : C:\Prototyping\R+MUNI Doku\R+MUNI Doku-internal\04-notes\naming_and_structure_S102.md
 Erstellt durch  : EUMAXL + Claude (Pair-Session)
+Letzte Änderung : 2026-04-01 — Kap. 1 Rollenprefix EXP/ASC/MGT neu, Kap. 3 Pendant-Logik erweitert, Kap. 4 Varianten-Kürzel ab S102 neu | Freigabe: EUMAXL
 ================================================================================
 
 
@@ -53,14 +54,17 @@ Letzter stabiler Stand (Ausgangspunkt S101):
 Rollenprefix-Logik:
   Kein Rollenprefix  = rollenübergreifend (z.B. dieses Dokument)
   _DEV_              = nur DEV-Kontext (z.B. how2_DEV_Template_S101.md)
-  kein Pendant nötig = ASSOCIATE-Dokumente tragen keinen Rollenprefix
-                       wenn sie die Default-Sicht darstellen
+  _EXP_              = Expert-Variante — neu ab S102 (kein DEV-Anteil, Prinzip + Verhalten)
+  _ASC_              = Associate-Variante — Kürzel neu ab S102 (vorher kein expliziter Prefix)
+  _MGT_              = MGT-Variante — Platzhalter, noch nicht aktiv
 
 Beispiele:
-  principles_Template_S101.md          rollenübergreifend
-  how2_DEV_Template_S101.md            DEV-spezifisch
-  BETA_OFFBOARDING_How2_DEV_S101.md    DEV-spezifisch mit Prozessbezug
-  naming_and_structure_S101.md         rollenübergreifend (dieses Dokument)
+  principles_Template_S101.md              rollenübergreifend
+  how2_DEV_Template_S101.md                DEV-spezifisch
+  AI_DRIVEN_DEV_METHODE_EXP_S102.md        Expert-Variante (neu ab S102)
+  AI_DRIVEN_DEV_METHODE_ASC_S102.md        Associate-Variante (Kürzel neu ab S102)
+  BETA_OFFBOARDING_How2_DEV_S101.md        DEV-spezifisch mit Prozessbezug
+  naming_and_structure_S101.md             rollenübergreifend (dieses Dokument)
 
 
 ================================================================================
@@ -146,42 +150,58 @@ DEV- und ASSOCIATE-Varianten eines Dokumenttyps liegen im selben Ordner.
 Der Suffix trennt die Welten — nicht der Ordner.
 
 Schema:
-  <Dokumentname>_DEV_S101.md           DEV-Variante
-  <Dokumentname>_S101.md               ASSOCIATE-Variante (kein Rollenprefix)
+  <Dokumentname>_DEV_S102.md           DEV-Variante
+  <Dokumentname>_EXP_S102.md           Expert-Variante (neu ab S102)
+  <Dokumentname>_ASC_S102.md           Associate-Variante (Kürzel neu ab S102)
+  <Dokumentname>_MGT_S102.md           MGT-Variante (Platzhalter — noch nicht aktiv)
 
 Beispiele:
   how2_DEV_Template_S101.md            DEV
-  TMP_How2_Associate_S8.md             ASSOCIATE (S8-Stand, noch nicht S101)
+  TMP_How2_Associate_S8.md             ASSOCIATE (S8-Stand, Kürzel noch alt)
 
-  BETA_OFFBOARDING_How2_DEV_S101.md    DEV
+  BETA_OFFBOARDING_How2_DEV_S101.md        DEV
   BETA_OFFBOARDING_principles_DEV_S101.md  DEV
 
 Grundregel: ASSOCIATE-Dokumente werden nie aus DEV-Dokumenten abgeleitet
             (Entkernungslogik ist abgeschafft ab S101).
-            DEV- und ASSOCIATE-Varianten entstehen parallel — unabhängig.
+            DEV-, EXP- und ASC-Varianten entstehen parallel — unabhängig.
+
+Renaming-Regel: ASC-Kürzel wird beim nächsten Editieren eines bestehenden
+                ASSOCIATE-Dokuments eingeführt — kein forciertes Bulk-Renaming.
 
 
 ================================================================================
-4. ELITE UND MGT — PLATZHALTER
+4. VARIANTEN-KÜRZEL — GÜLTIG AB STAGE 1.02
 ================================================================================
 
-⚠ NOCH NICHT FIXIERT — PLATZHALTER
+Ab Stage 1.02 gelten vier offizielle Varianten-Kürzel für alle R+MUNI Dokumente.
 
-Die Rollen ELITE und MGT sind für künftige Ausbaustufen vorgesehen.
-Namenskonvention, Ablagelogik und Template-Varianten sind
-zum aktuellen Zeitpunkt (S101) nicht definiert.
+  DEV    Development       Interne Arbeitsgrundlage — EUMAXL + Claude Sparring.
+                           Hart, fair, vollständig, GOV-konform.
+                           Kürzel unverändert — war bereits etabliert.
 
-Was bekannt ist:
-  - ELITE und MGT werden eigene Dokument-Varianten erhalten
-  - Der Sprint dafür ist explizit OUT OF SCOPE des aktuellen DEV-TMPL-RESYNC
-  - Eine voreilige Fixierung würde Folgefehler erzeugen
+  EXP    Expert            Externe Expert-Variante — neu ab S102.
+                           Ableitung aus DEV-Prinzipien und -Verhalten,
+                           ohne DEV-Anteil. Für erfahrene externe Nutzer.
 
-Erwartete Suffix-Logik (nicht verbindlich, nur Orientierung):
-  <Dokumentname>_ELITE_S1xx.md         ELITE-Variante (Stage noch offen)
-  <Dokumentname>_MGT_S1xx.md           MGT-Variante (Stage noch offen)
+  ASC    Associate         Bisherige ASSOCIATE-Variante — Kürzel neu ab S102.
+                           Renaming erfolgt beim nächsten Editieren,
+                           kein forciertes Bulk-Renaming.
 
-Nächster Schritt: Eigener Sprint wenn ELITE/MGT-Phase gestartet wird.
-Verweis: Backlog-Eintrag folgt bei Sprint-Initiierung.
+  MGT    Management        Platzhalter — noch nicht aktiv.
+                           ChatGPT/Copilot-Prompt-Variante ohne Folder/Files.
+                           Eigener Sprint wenn Phase gestartet wird.
+
+Dateinamen-Schema ab S102:
+  <Dokumentname>_DEV_S102.md
+  <Dokumentname>_EXP_S102.md
+  <Dokumentname>_ASC_S102.md
+  <Dokumentname>_MGT_S102.md   (noch nicht aktiv)
+
+Übergangsregel:
+  Bestehende _DEV_S101 Dokumente bleiben unverändert bis zum nächsten Editieren.
+  Bestehende ASSOCIATE-Dokumente ohne _ASC_ Kürzel bleiben bis zum nächsten Editieren.
+  Kein Zwang zur sofortigen Umbenennung — Kontinuität vor Perfektion.
 
 
 ================================================================================
@@ -209,13 +229,14 @@ BEZÜGE
 ================================================================================
 
 [[Global_GOV_DEV_S101]]                      Normative Grundlage
-[[AI_DRIVEN_DEV_METHODE_DEV_S101]]           Methodik und Rollenkontext
-[[FREEZE_8]]                                 R1 — letzter stabiler Stand (Freeze 8 = R1)
+[[AI_DRIVEN_DEV_METHODE_DEV_S102]]           Methodik und Rollenkontext
+[[FREEZE_101]]                               Letzter stabiler Stand
 [[BACKLOG_Namenskonvention-GitHub-Sync_DEV_S101]]  Offene Namenskonvention
 [[Sprint-DEV-S101-DEV-TMPL-RESYNC]]          Entstehungskontext dieses Dokuments
 
 
 ================================================================================
-naming_and_structure_S101 | 2026-03-31
-R+MUNI Blueprint | Stage 1.01 | Erstellt: EUMAXL + Claude (Pair-Session)
+naming_and_structure_S102 | 2026-04-01
+R+MUNI Blueprint | Stage 1.02 | Erstellt: EUMAXL + Claude (Pair-Session)
+Letzte Änderung: 2026-04-01 — Varianten-Kürzel DEV/EXP/ASC/MGT definiert
 ================================================================================

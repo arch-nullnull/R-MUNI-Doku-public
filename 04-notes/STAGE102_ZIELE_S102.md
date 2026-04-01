@@ -13,6 +13,7 @@ Verantwortlich  : EUMAXL
 Review          : —
 Jira-Sync       : NEIN
 Erstellt durch  : EUMAXL + Claude (Pair-Session)
+Letzte Änderung : 2026-04-01 — Zieldefinition korrigiert: DEV-Push gestrichen, Expert-Variante AI Driven Dev ergänzt | Freigabe: EUMAXL
 ================================================================================
 
 
@@ -24,7 +25,8 @@ Stage 102 dient der gezielten Außenwirkung, Rückkopplungsverarbeitung
 und strukturellen Klärung der Projektbasis.
 
 Im Fokus stehen:
-  - 1.01 Release finalisieren und DEV-Unterlagen as-is in den Public Repo heben
+  - 1.01 Release finalisieren und Associate-Inhalte in den Public Repo heben
+  - AI Driven Development Methodik als Expert-Variante aufbereiten und publizieren
   - ASC-Onboarding fortsetzen und Beta-Feedback aller Betakunden einarbeiten
   - Teamstruktur neu bewerten — Rollen klären, Realität abbilden
   - Backlog-Abarbeitung optional und on demand
@@ -55,7 +57,8 @@ Bezug auf vorherigen Freeze:
 
 Stage 102 ist der Übergang von interner Stabilisierung zu aktiver Außenwirkung.
 
-  - DEV-Unterlagen gehen as-is public — kein Umbenennen, kein Nachführen
+  - Associate-Inhalte gehen public — DEV-Unterlagen bleiben intern
+  - AI Driven Development geht als Expert-Variante in den Public Repo
   - Feedback aus dem Beta-Betrieb fließt strukturiert ein
   - Die Teamrealität wird ehrlich abgebildet — ohne Schönfärberei
   - Neue Personen werden geprüft, nicht automatisch eingebunden
@@ -71,23 +74,24 @@ Stage 102 darf pragmatisch sein — Wirkung vor Perfektion.
 4.1 1.01 Release & Public Push
 --------------------------------
   - Release 1.01 finalisieren (inkl. aller S101-Ergebnisse)
-  - DEV-Unterlagen as-is in den Public Repo heben — keine Umbenennung, kein Nachführen
+  - Associate-Inhalte in den Public Repo heben — kein DEV-Unterlagen-Push
   - Resonanz beobachten — kein Nachfassen ohne konkreten Anlass
-  - Ziel: DEV-Unterlagen sind im Public verfügbar
+  - Ziel: Associate-Inhalte sind im Public verfügbar
 
-Grenze: Keine inhaltliche Überarbeitung der DEV-Templates für den Public Push.
-        Keine Umbenennung — was DEV heißt bleibt DEV.
+Grenze: DEV-Unterlagen bleiben intern. Kein as-is-Push von DEV-Dokumenten.
+        DEV-Methodik wird ausschließlich als Expert-Variante publiziert (→ 4.2).
 
 
-4.2 AI Driven Development — Modell-Dokumentation
---------------------------------------------------
-  - 1.01-Dokument (DEV-Niveau, S101-Standard) bleibt as-is und geht public
-  - S8-Dokument (Associate-Niveau) bleibt so wie beschrieben liegen
-  - Beide Ausprägungen koexistieren ohne Hierarchie
-  - Keine neue Ausprägung in Stage 102 — Bestand ist ausreichend
-  - Ziel: Zwei funktionierende Modelle sind sichtbar und dokumentiert
+4.2 AI Driven Development — Expert-Variante
+---------------------------------------------
+  - AI_DRIVEN_DEV_METHODE_DEV_S101 (DEV-Niveau) bleibt intern — kein Public Push as-is
+  - S8-Dokument (Associate-Niveau) bleibt unverändert liegen
+  - Neue Expert-Variante entsteht: DEV-Sprache → Expert-Sprache, inhaltlich korrigiert
+  - Expert-Variante geht in den Public Repo (R+MUNI Repo)
+  - Ziel: AI Driven Development ist als Expert-Angebot öffentlich sichtbar
 
-Grenze: Keine neue Methoden-Variante in Stage 102.
+Grenze: Keine weitere neue Ausprägung in Stage 102.
+        DEV-Variante bleibt read-only — kein Eingriff für den Public Push.
 
 
 4.3 ASC-Onboarding & Beta-Feedback
@@ -170,6 +174,7 @@ Nicht Teil von Stage 102 sind:
   - MGT-Template-Push in den Public Repo
   - Visual Asset Pipeline (Stable Diffusion / LoRA — Backlog)
   - Vollständige Onboarding-Neugestaltung (flagged als Future Backlog)
+  - DEV-Unterlagen as-is in den Public Repo — bewusst ausgeschlossen (→ Elite-Kanal, eigener Sprint)
 
 Diese Themen wachsen aus Stage 102 heraus — sie sind Ergebnis, nicht Voraussetzung.
 
