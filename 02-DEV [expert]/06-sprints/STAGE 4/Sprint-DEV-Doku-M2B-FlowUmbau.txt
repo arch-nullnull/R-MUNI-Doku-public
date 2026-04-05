@@ -1,0 +1,223 @@
+================================================================================
+SPRINT DEV-DOKUMENTATION
+================================================================================
+Projekt             : R+MUNI Blueprint
+Sprint-Bezeichnung  : SPRINT-M2B-FlowUmbau
+Datum               : 2026-03-14
+Stage               : 4 (aktiv) / Übergang Stage 5
+Status              : Dev-Dokumentation (nicht auditpflichtig per GOV 10.8)
+Erstellt durch      : EUMAXL + Claude (Pair-Session)
+================================================================================
+
+
+--------------------------------------------------------------------------------
+1. STAGE-KONTEXT UND SPRINT-BEGRÜNDUNG
+--------------------------------------------------------------------------------
+
+1.1 Stage-Modell (Ist-Zustand)
+-------------------------------
+Stage 3  FREEZE
+Stage 4  AKTIV — wird mit diesem Sprint funktional abgeschlossen
+Stage 5  VORBEREITET — Flow ist nun stabil genug für Stage 5 Arbeiten
+
+1.2 Auslöser
+-------------
+Auslöser-Typ : Bugfix-Kette + struktureller Umbau
+
+Ausgangslage : Nach dem Stage 3 Cleaning Run wurden mehrere grundlegende
+               Probleme im M2B Flow identifiziert die einen stabilen
+               Betrieb verhindert haben:
+
+               - Alle BPMN-Dateien bekamen bei jedem Run einen neuen
+                 Timestamp obwohl sich nichts geändert hatte
+               - Externe BPMN-Dateien (Camunda-first) wurden nicht
+                 erkannt und als neue Hüllen dupliziert
+               - BPMN_ID wurde mit leerem Wert und ohne ID geschrieben
+                 (verwaiste Einträge in properties.csv)
+               - Alte PropertyDefinitions (3PartyId, ID3Party, 3rdPartyID)
+                 erzeugten Konflikte beim Archi-Import
+               - M2B06 hatte keine saubere immutable-Logik
+
+
+--------------------------------------------------------------------------------
+2. KONZEPT — ZWEI FLOW-WEGE
+--------------------------------------------------------------------------------
+
+2.1 Flow A — Archi first (Normalfall)
+---------------------------------------
+  Archi erstellt Prozess → Archi-ID = id-abc123
+  M2B01 erstellt BPMN-Hülle mit process id = id-abc123
+  M2B06 setzt BPMN_ID = id-abc123 (identisch mit Archi-ID, gewollt)
+  → Stabil nach erstem Run
+
+2.2 Flow B — Camunda first (externer Prozess)
+-----------------------------------------------
+  Camunda erstellt Prozess → Process_1jzas7b
+  Liegt im active-Ordner ohne Archi-Bezug
+  M2B05 schreibt BPMN in master.xml
+  Erster CSV-Import → manueller Eingriff → Archi-ID entsteht
+  Zweiter Run → M2B06 setzt BPMN_ID = Process_1jzas7b (immutable)
+  Ab jetzt: Archi-ID + BPMN_ID + idente Namen in allen Welten
+
+2.3 BPMN_ID — Kernprinzip
+---------------------------
+  - BPMN_ID ist die externe Prozess-ID — einmalig gesetzt, nie überschrieben
+  - Ist immer die BPMN Process ID egal ob Archi-ID oder Camunda-ID
+  - Archi-ID und BPMN_ID können identisch sein (Flow A) — das ist korrekt
+  - Über BPMN_ID kann ein Prozess jederzeit anderen Welten zugeordnet werden
+  - Archi ist immer die Quelle der Wahrheit für Namen und Struktur
+
+2.4 Name-Sync Prinzip
+----------------------
+  - Archi-Name überschreibt BPMN process name wenn Archi-ID + BPMN_ID stabil
+  - Kommt ein geänderter Name aus Camunda → Archi CSV-Import übernimmt ihn
+    intern (Archi-eigene Logik über interne ID) → beim nächsten OEF Export
+    kommt er bereits korrigiert zurück → kein separater Fix nötig
+
+
+--------------------------------------------------------------------------------
+3. UMGESETZTE ÄNDERUNGEN
+--------------------------------------------------------------------------------
+
+3.1 M2B01-master_extract.py
+-----------------------------
+  Fix: bpmn_exists() prüft jetzt BEIDE Ordner auf ID-Match
+    - HULL_DIR (bpmnarchive) — wie bisher
+    - ACTIVE_DIR (bpmnactive) — neu hinzugefügt
+
+  Vorher: Externe BPMN-Datei (z.B. BUP99-Schnitten_Kim.bpmn mit
+          Camunda-ID Process_1jzas7b) wurde nicht erkannt →
+          neue Hülle wurde fälschlicherweise erstellt → Duplikat
+
+  Nachher: ID-Match in beiden Ordnern → externe BPMN wird erkannt →
+           keine neue Hülle → kein Duplikat
+
+  Ebenfalls ergänzt: ACTIVE_DIR in CONFIG-Block
+
+3.2 M2B04-reconcile_enrich.py
+-------------------------------
+  Fix: Timestamp-Problem — tree.write() wurde an 3 Stellen aufgerufen
+       auch wenn sich nichts geändert hatte
+
+  Vorher: Alle BPMN-Dateien bekamen bei jedem Run einen neuen
+          Filesystem-Timestamp → alle sahen "verändert" aus
+
+  Nachher: changed-Flag pro Datei — write() nur bei echter Änderung
+    - Kein Archi-Match → nur Log, kein Schreiben
+    - Falscher Model-Kontext → nur Log, kein Schreiben
+    - Name geändert → changed=True → schreiben + Log "written: xyz.bpmn"
+    - Nichts geändert → Log "no changes: xyz.bpmn -> skip write"
+
+3.3 M2B06-writeback_bpmn_id.py (NEU — ersetzt altes M2B06)
+------------------------------------------------------------
+  Zweck: Schreibt BPMN_ID als Property in Archi-Elemente in master.xml
+
+  Kernregeln:
+    - BPMN_ID wird NUR gesetzt wenn noch nicht vorhanden (immutable)
+    - BPMN_ID wird NIE überschrieben wenn bereits gesetzt
+    - Leere Werte werden NIE geschrieben
+    - master.xml wird NUR geschrieben wenn sich etwas geändert hat
+    - Nur sourceSystem=archi Elemente werden angefasst
+
+  Match-Hierarchie:
+    1. BPMN process id == Archi identifier    (direkter ID-Match)
+    2. BPMN process name == Archi name        (Name-Fallback)
+    3. Kein Match → loggen, nichts schreiben
+
+  PropertyDefinition:
+    identifier : propid-bpmn-id
+    name       : BPMN_ID
+    → wird automatisch angelegt wenn fehlend
+
+3.4 M2B07-scope_snapshot.py (umbenannt von M2B06)
+---------------------------------------------------
+  Inhalt unverändert — nur Nummerierung angepasst von M2B06 auf M2B07
+  Alle internen Referenzen (Log-Dateiname, Kommentare) ebenfalls angepasst
+
+
+--------------------------------------------------------------------------------
+4. FLOW-REIHENFOLGE (FINAL)
+--------------------------------------------------------------------------------
+
+  M2B00  root_resolve           Pfad-Auflösung
+  M2B01  master_extract         BPMN-Hüllen aus master.xml erstellen
+  M2B02  activate_model         Hüllen in active-Ordner aktivieren
+  M2B03  clear                  Stage-Artefakte bereinigen
+  M2B04  reconcile_enrich       Namen aus Archi in BPMN synchronisieren
+  M2B05  writeback_master       BPMN-Inhalte in master.xml zurückschreiben
+  M2B06  writeback_bpmn_id      BPMN_ID Property in Archi-Elemente schreiben
+  M2B07  scope_snapshot         Snapshot der sourceSystem/sourceModel in run-scope.txt
+
+
+--------------------------------------------------------------------------------
+5. BEKANNTE MUSTER / BETRIEBSHINWEISE
+--------------------------------------------------------------------------------
+
+5.1 Erster CSV-Import nach leerem master.xml
+---------------------------------------------
+  Beim ersten Archi CSV-Import kann es zu einem Fehler kommen wenn
+  properties.csv und relations.csv im Import-Ordner noch Reste haben.
+
+  Lösung:
+  1. Ersten Import durchführen → schlägt fehl
+  2. properties.csv + relations.csv im Import-Ordner löschen
+  3. Import nochmals → erfolgreich
+
+5.2 Flow B — manueller Eingriff beim ersten Import
+----------------------------------------------------
+  Wenn ein Camunda-Prozess ohne Archi-Bezug erstellt wurde ist beim
+  ersten CSV-Import ein manueller Eingriff nötig um das neue Archi-Element
+  korrekt zuzuordnen. Ab dem zweiten Run läuft alles automatisch.
+
+  Zukünftiger Fix: Automatisierung dieses Schritts ist als offener
+  Punkt für Stage 5 vorgemerkt.
+
+5.3 BPMN_ID und 3PartyId
+--------------------------
+  3PartyId existiert nicht mehr als Property.
+  BPMN_ID ist der einzige und ausschließliche Anker für externe IDs.
+  Alte PropertyDefinitions (ID3Party, 3rdPartyID) wurden bereinigt.
+
+
+--------------------------------------------------------------------------------
+6. TESTERGEBNIS
+--------------------------------------------------------------------------------
+
+  Status : ERFOLGREICH
+  Ergebnis:
+    - Nur 1 ID pro Prozess in Archi (BPMN_ID) — korrekt
+    - Keine verwaisten Einträge mehr in properties.csv
+    - Keine Duplikate bei externen BPMN-Dateien
+    - Timestamps nur bei echten Änderungen
+
+
+--------------------------------------------------------------------------------
+7. OFFENE PUNKTE / STAGE 5
+--------------------------------------------------------------------------------
+
+  [ ] Manuellen Eingriff beim ersten CSV-Import von Flow B automatisieren
+  [ ] flowmapping.txt: M2B06 und M2B07 eintragen
+  [ ] M2B_FLOW_principles aktualisieren (neue Nummerierung + BPMN_ID Konzept)
+  [ ] M2B_FLOW_How2 aktualisieren
+
+
+--------------------------------------------------------------------------------
+8. LESSONS LEARNED
+--------------------------------------------------------------------------------
+
+  - Timestamp-Problem entsteht wenn tree.write() defensiv "auf Vorrat"
+    aufgerufen wird. Immer changed-Flag verwenden.
+
+  - ID-Match muss in ALLEN relevanten Ordnern geprüft werden —
+    nicht nur im Archiv-Ordner.
+
+  - Immutable-Properties brauchen explizite Exists-Prüfung vor dem Setzen.
+    Kein "überschreiben ist eh egal" — das erzeugt Duplikate.
+
+  - Altlasten in master.xml (doppelte PropertyDefinitions) können
+    monatelang unbemerkt bleiben bis ein Import fehlschlägt.
+    Diagnose-Scripts sind wertvoller als angenommen.
+
+================================================================================
+ENDE DER SPRINT-DOKUMENTATION
+================================================================================

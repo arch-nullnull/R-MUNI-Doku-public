@@ -1,0 +1,215 @@
+================================================================================
+SPRINT DEV-DOKUMENTATION
+================================================================================
+Projekt             : R+MUNI Blueprint
+Sprint-Bezeichnung  : SPRINT-M2B06-3PartyId
+Datum               : 2026-03-13
+Stage               : 4 (aktiv)
+Status              : Dev-Dokumentation (nicht auditpflichtig per GOV 10.8)
+Erstellt durch      : EUMAXL + Claude (Pair-Session)
+================================================================================
+
+
+--------------------------------------------------------------------------------
+1. STAGE-KONTEXT UND SPRINT-BEGRÜNDUNG
+--------------------------------------------------------------------------------
+
+1.1 Stage-Modell (Ist-Zustand)
+-------------------------------
+Stage 3  FREEZE
+         Stage 3 ist eingefroren. Änderungen ausschließlich für Bugfixing
+         zulässig. Neue Features sind in Stage 3 nicht erlaubt.
+
+Stage 4  AKTIV
+         Aktuelle Entwicklungsphase. Neue Features und Erweiterungen des
+         Blueprints werden hier umgesetzt.
+
+1.2 Auslöser (gemäß GOV 10.3 / 10.5)
+---------------------------------------
+Auslöser-Typ : Bugfix / Stage-3-Freeze-Wiederherstellung
+
+Begründung   : Stage 3 Freeze Punkt 3.4 definiert explizit:
+               "3rd-Party-IDs werden übernommen und als Attribut geführt"
+
+               Diese Funktion war im Laufe der M2B Refactoring-Sprints
+               verloren gegangen. Rosetta Stone Block 2 (Flow 3 M2B)
+               bestätigt das Konzept:
+               "BPMN Prozess-ID wird zur 3rd Party ID für ArchiMate —
+               ermöglicht spätere Zusammenführung und Zyklus-Stabilität."
+
+               Zusätzlich waren durch frühere Entwicklungsversuche
+               veraltete und doppelte PropertyDefinitions in master.xml
+               entstanden (ID3Party, 3rdPartyID, doppelte propid-1)
+               die den korrekten Archi-Import verhindert hätten.
+
+Fachlicher   : Die 3PartyId ist das Bindeglied zwischen BPMN-Prozessen
+Mehrwert       und ArchiMate-Elementen. Sie ermöglicht systemübergreifende
+               Traceability und ist Voraussetzung für den 3rd-Party-Import
+               Flow (BUP00-3rd Party Import).
+
+
+--------------------------------------------------------------------------------
+2. KONZEPT UND ENTSCHEIDUNGEN
+--------------------------------------------------------------------------------
+
+2.1 Was ist die 3PartyId?
+--------------------------
+Die 3PartyId ist EINE Property pro BusinessProcess-Element in Archi.
+Sie enthält immer die BPMN Process ID des zugehörigen BPMN-Prozesses.
+
+Zwei Fälle:
+
+  Fall A — Prozess aus Archi heraus entstanden (Normalfall):
+    BPMN Process ID == Archi Identifier
+    → 3PartyId = Archi ID
+    → Beide Werte sind identisch — das ist korrekt und gewollt
+
+  Fall B — Prozess extern in Camunda erstellt (3rd Party):
+    BPMN Process ID ist eine Camunda-generierte ID (z.B. Process_0ux338x)
+    → 3PartyId = diese Camunda-ID
+    → Archi-ID und 3PartyId sind unterschiedlich
+
+  Entscheidung: Nur eine Property "3PartyId" — keine separate "BPMN_ID".
+  Die 3PartyId IST die BPMN Process ID, immer, in beiden Fällen.
+
+2.2 Property-Definition (Standard)
+------------------------------------
+  PropertyDefinition identifier : propid-3partyid
+  PropertyDefinition name       : 3PartyId
+  Property key                  : 3PartyId
+  Scope                         : BusinessProcess Elemente mit sourceSystem=archi
+
+2.3 Matching-Logik in M2B06
+-----------------------------
+  Primär  : BPMN Process ID == Archi identifier (direkter ID-Match)
+  Fallback : BPMN Process Name == Archi element name (Name-Match)
+  Kein Match → Element wird übersprungen, Warnung im Log
+
+2.4 Bekanntes Import-Muster (dokumentiert)
+-------------------------------------------
+  Beim ersten Archi CSV-Import nach einem vollständigen Run kann es zu
+  einem Fehler kommen wenn properties.csv und relations.csv im Import-
+  Ordner noch Reste des vorherigen Runs enthalten.
+
+  Lösung (bekannt und getestet):
+  1. Ersten Run durchführen → Import schlägt fehl
+  2. properties.csv + relations.csv im Import-Ordner löschen
+  3. Run nochmals durchführen → Import erfolgreich
+
+  Ursache: Archi CSV-Import verarbeitet properties.csv und relations.csv
+  beim ersten Import und hinterlässt Reste wenn der Run unterbrochen wird.
+
+
+--------------------------------------------------------------------------------
+3. UMGESETZTE ÄNDERUNGEN
+--------------------------------------------------------------------------------
+
+3.1 Neue Scripts
+-----------------
+
+  M2B06-writeback_archi_props.py   (NEU)
+    Zweck    : Liest alle aktiven BPMN-Dateien, extrahiert Process IDs,
+               matched gegen Archi-Elemente in master.xml und schreibt
+               3PartyId als Property zurück.
+    Ablage   : 01-artifacts/01-scripts/
+    Log      : 02-stages/99-logs/M2B06-writeback_archi_props.log
+
+  M2B07-scope_snapshot.py          (UMBENANNT von M2B06)
+    Zweck    : Scope Snapshot — unveränderte Funktionalität,
+               nur Nummerierung angepasst.
+    Ablage   : 01-artifacts/01-scripts/
+
+  HLP10-cleanup_property_definitions.py   (EINMALIG / HILFSTOOL)
+    Zweck    : Bereinigt veraltete PropertyDefinitions aus master.xml.
+               Erstellt als einmaliges Bereinigungstool für den
+               Übergang von alten Entwicklungsständen.
+               Kann nach Verwendung archiviert werden.
+    Ablage   : 01-artifacts/01-scripts/
+
+3.2 Bereinigte Altlasten in master.xml
+---------------------------------------
+  Entfernt:
+    propid-1 / ID3Party     (veralteter Name aus früherem Versuch)
+    propid-2 / 3rdPartyID   (veralteter Name aus früherem Versuch)
+    propid-1 / Type         (Duplikat — doppelter identifier)
+
+  Behalten:
+    propid-3partyid / 3PartyId   (aktueller Standard)
+
+3.3 Flow-Reihenfolge (aktualisiert)
+-------------------------------------
+  M2B00  root_resolve
+  M2B01  master_extract
+  M2B02  activate_model
+  M2B03  clear
+  M2B04  reconcile_enrich
+  M2B05  writeback_master
+  M2B06  writeback_archi_props    ← NEU (3PartyId Rückführung)
+  M2B07  scope_snapshot           ← umbenannt (war M2B06)
+
+
+--------------------------------------------------------------------------------
+4. TESTERGEBNIS
+--------------------------------------------------------------------------------
+
+4.1 Diagnose-Ergebnis (M2B06-diagnose.py)
+-------------------------------------------
+  BPMN-Dateien in active : 21
+  Archi-Elemente gefunden : 652
+  Matches via ID          : 18 von 21
+  Kein Match (erwartet)   :  3
+
+  Kein-Match Details (alle korrekt — keine Bugs):
+    BUP00-CSV FLOW.bpmn    → verwaiste BPMN, kein Archi-Pendant mehr
+    Business Process.bpmn  → Camunda Default-Template, kein Archi-Pendant
+    TestID.bpmn            → Testdatei mit Camunda-ID Process_0ux338x
+
+4.2 Endergebnis in Archi
+--------------------------
+  Status : ERFOLGREICH
+  Ergebnis: BusinessProcess-Elemente haben 3PartyId korrekt gesetzt.
+  Beobachtung: In der aktuellen Basis sind alle Werte identisch mit
+               der Archi-ID (Fall A) weil alle Prozesse aus Archi
+               heraus entstanden sind. Das ist korrekt.
+
+
+--------------------------------------------------------------------------------
+5. OFFENE PUNKTE / FOLGEAUFGABEN
+--------------------------------------------------------------------------------
+
+5.1 Dokumentation (ausstehend)
+--------------------------------
+  [ ] flowmapping.txt: M2B06 und M2B07 eintragen
+  [ ] M2B_FLOW_principles_S3.txt: neue Nummerierung + M2B06 Funktion
+  [ ] M2B_FLOW_How2_S3.txt: neue Nummerierung + M2B06 Funktion
+  [ ] HLP10 nach Verwendung archivieren oder löschen
+
+5.2 Zukünftiger Testfall
+--------------------------
+  Testfall für Fall B (3rd Party Prozess) steht noch aus:
+  → Prozess direkt in Camunda erstellen (ohne Archi-Vorlage)
+  → M2B Flow durchlaufen
+  → Prüfen ob 3PartyId = Camunda-ID korrekt in Archi landet
+  → Prüfen ob Archi-ID und 3PartyId korrekt unterschiedlich sind
+
+
+--------------------------------------------------------------------------------
+6. LESSONS LEARNED
+--------------------------------------------------------------------------------
+
+  - Kontext-Overhead: Bei langen Sessions mit vielen Entwicklungsschleifen
+    können alte PropertyDefinitions und Zwischenstände in master.xml
+    akkumulieren. Vor dem Schreiben neuer Properties immer prüfen ob
+    bereits PropertyDefinitions mit ähnlichem Zweck existieren.
+
+  - Diagnose-First: Das erstellte M2B06-diagnose.py hat den Altlast-
+    Befund (3 veraltete PropertyDefinitions) zuverlässig aufgedeckt.
+    Diagnose-Scripts vor Fix-Scripts ist bewährtes Muster.
+
+  - Sauberer Reset: master.xml + CSV Masters löschen und vollständigen
+    Run neu starten ist der zuverlässigste Weg um Akkumulationsfehler
+    zu beheben. Schneller als chirurgische Einzelkorrekturen.
+
+================================================================================
+ENDE DER SPRINT-DOKUMENTATION
+================================================================================
