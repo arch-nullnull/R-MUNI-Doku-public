@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="680" height="800" viewBox="0 0 680 800" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+
+  <defs>
+    <style>
+      .rubrik-label { font-size: 13px; font-weight: 600; fill: #F1EFE8; }
+      .col-header   { font-size: 15px; font-weight: 700; fill: #ffffff; }
+      .row-label    { font-size: 12px; font-weight: 600; fill: #444441; }
+      .cell-main    { font-size: 13px; font-weight: 600; }
+      .cell-sub     { font-size: 11px; font-weight: 400; }
+
+      /* row label bg */
+      .bg-row  { fill: #E8E6DF; }
+
+      /* CARD — Teal */
+      .bg-card  { fill: #E1F5EE; }
+      .tx-card  { fill: #085041; }
+
+      /* Associate — Blue */
+      .bg-asc   { fill: #E6F1FB; }
+      .tx-asc   { fill: #0C447C; }
+
+      /* Expert — Amber */
+      .bg-exp   { fill: #FAEEDA; }
+      .tx-exp   { fill: #633806; }
+
+      /* DEV — Purple */
+      .bg-dev   { fill: #EEEDFE; }
+      .tx-dev   { fill: #26215C; }
+
+      /* Header fills (dark) */
+      .hd-row   { fill: #2C2C2A; }
+      .hd-card  { fill: #085041; }
+      .hd-asc   { fill: #0C447C; }
+      .hd-exp   { fill: #633806; }
+      .hd-dev   { fill: #26215C; }
+    </style>
+  </defs>
+
+  <!-- ══════════════════════════════════════════════
+       HEADER ROW
+  ══════════════════════════════════════════════ -->
+  <rect x="10"  y="14" width="130" height="48" rx="7" class="hd-row"/>
+  <rect x="146" y="14" width="126" height="48" rx="7" class="hd-card"/>
+  <rect x="278" y="14" width="126" height="48" rx="7" class="hd-asc"/>
+  <rect x="410" y="14" width="126" height="48" rx="7" class="hd-exp"/>
+  <rect x="542" y="14" width="128" height="48" rx="7" class="hd-dev"/>
+
+  <text x="75"  y="38" text-anchor="middle" dominant-baseline="central" class="rubrik-label">Rubrik</text>
+  <text x="209" y="38" text-anchor="middle" dominant-baseline="central" class="col-header">CARD</text>
+  <text x="341" y="38" text-anchor="middle" dominant-baseline="central" class="col-header">Associate</text>
+  <text x="473" y="38" text-anchor="middle" dominant-baseline="central" class="col-header">Expert</text>
+  <text x="606" y="38" text-anchor="middle" dominant-baseline="central" class="col-header">DEV</text>
+
+  <!-- ══════════════════════════════════════════════
+       ROW 1 — Views  (h=78)
+  ══════════════════════════════════════════════ -->
+  <rect x="10"  y="68" width="130" height="78" rx="6" class="bg-row"/>
+  <rect x="146" y="68" width="126" height="78" rx="6" class="bg-card"/>
+  <rect x="278" y="68" width="126" height="78" rx="6" class="bg-asc"/>
+  <rect x="410" y="68" width="126" height="78" rx="6" class="bg-exp"/>
+  <rect x="542" y="68" width="128" height="78" rx="6" class="bg-dev"/>
+
+  <text x="75"  y="107" text-anchor="middle" dominant-baseline="central" class="row-label">Views</text>
+
+  <text x="209" y="97"  text-anchor="middle" dominant-baseline="central" class="cell-main tx-card">3</text>
+  <text x="209" y="117" text-anchor="middle" dominant-baseline="central" class="cell-sub  tx-card">Einstieg</text>
+
+  <text x="341" y="97"  text-anchor="middle" dominant-baseline="central" class="cell-main tx-asc">5 (6)</text>
+  <text x="341" y="117" text-anchor="middle" dominant-baseline="central" class="cell-sub  tx-asc">Begleitet</text>
+
+  <text x="473" y="97"  text-anchor="middle" dominant-baseline="central" class="cell-main tx-exp">9 (10)</text>
+  <text x="473" y="117" text-anchor="middle" dominant-baseline="central" class="cell-sub  tx-exp">Fast vollständig</text>
+
+  <text x="606" y="97"  text-anchor="middle" dominant-baseline="central" class="cell-main tx-dev">10</text>
+  <text x="606" y="117" text-anchor="middle" dominant-baseline="central" class="cell-sub  tx-dev">Vollständig</text>
+
+  <!-- ══════════════════════════════════════════════
+       ROW 2 — Drift-Toleranz  (h=52)
+  ══════════════════════════════════════════════ -->
+  <rect x="10"  y="152" width="130" height="52" rx="6" class="bg-row"/>
+  <rect x="146" y="152" width="126" height="52" rx="6" class="bg-card"/>
+  <rect x="278" y="152" width="126" height="52" rx="6" class="bg-asc"/>
+  <rect x="410" y="152" width="126" height="52" rx="6" class="bg-exp"/>
+  <rect x="542" y="152" width="128" height="52" rx="6" class="bg-dev"/>
+
+  <text x="75"  y="178" text-anchor="middle" dominant-baseline="central" class="row-label">Drift-Toleranz</text>
+  <text x="209" y="178" text-anchor="middle" dominant-baseline="central" class="cell-main tx-card">+++++</text>
+  <text x="341" y="178" text-anchor="middle" dominant-baseline="central" class="cell-main tx-asc">+++</text>
+  <text x="473" y="178" text-anchor="middle" dominant-baseline="central" class="cell-main tx-exp">++</text>
+  <text x="606" y="178" text-anchor="middle" dominant-baseline="central" class="cell-main tx-dev">++</text>
+
+  <!-- ══════════════════════════════════════════════
+       ROW 3 — AI tested  (h=68)
+  ══════════════════════════════════════════════ -->
+  <rect x="10"  y="210" width="130" height="68" rx="6" class="bg-row"/>
+  <rect x="146" y="210" width="126" height="68" rx="6" class="bg-card"/>
+  <rect x="278" y="210" width="126" height="68" rx="6" class="bg-asc"/>
+  <rect x="410" y="210" width="126" height="68" rx="6" class="bg-exp"/>
+  <rect x="542" y="210" width="128" height="68" rx="6" class="bg-dev"/>
+
+  <text x="75"  y="244" text-anchor="middle" dominant-baseline="central" class="row-label">AI tested</text>
+
+  <text x="209" y="234" text-anchor="middle" dominant-baseline="central" class="cell-main tx-card">CoPilot /</text>
+  <text x="209" y="252" text-anchor="middle" dominant-baseline="central" class="cell-sub  tx-card">ChatGPT Pro</text>
+
+  <text x="341" y="244" text-anchor="middle" dominant-baseline="central" class="cell-main tx-asc">Claude Pro</text>
+  <text x="473" y="244" text-anchor="middle" dominant-baseline="central" class="cell-main tx-exp">Claude Pro</text>
+
+  <text x="606" y="234" text-anchor="middle" dominant-baseline="central" class="cell-main tx-dev">Claude Pro</text>
+  <text x="606" y="252" text-anchor="middle" dominant-baseline="central" class="cell-sub  tx-dev">+ Kontingent</text>
+
+  <!-- ══════════════════════════════════════════════
+       ROW 4 — Kosten DEV  (h=68)
+  ══════════════════════════════════════════════ -->
+  <rect x="10"  y="284" width="130" height="68" rx="6" class="bg-row"/>
+  <rect x="146" y="284" width="126" height="68" rx="6" class="bg-card"/>
+  <rect x="278" y="284" width="126" height="68" rx="6" class="bg-asc"/>
+  <rect x="410" y="284" width="126" height="68" rx="6" class="bg-exp"/>
+  <rect x="542" y="284" width="128" height="68" rx="6" class="bg-dev"/>
+
+  <text x="75"  y="318" text-anchor="middle" dominant-baseline="central" class="row-label">Kosten DEV</text>
+
+  <text x="209" y="308" text-anchor="middle" dominant-baseline="central" class="cell-main tx-card">CoPilot Abo /</text>
+  <text x="209" y="326" text-anchor="middle" dominant-baseline="central" class="cell-sub  tx-card">ChatGPT Abo</text>
+
+  <text x="341" y="318" text-anchor="middle" dominant-baseline="central" class="cell-main tx-asc">Claude Pro</text>
+  <text x="473" y="318" text-anchor="middle" dominant-baseline="central" class="cell-main tx-exp">Claude Pro</text>
+  <text x="606" y="318" text-anchor="middle" dominant-baseline="central" class="cell-main tx-dev">Claude Pro</text>
+
+  <!-- ══════════════════════════════════════════════
+       ROW 5 — Kosten Betrieb  (h=52)
+  ══════════════════════════════════════════════ -->
+  <rect x="10"  y="358" width="130" height="52" rx="6" class="bg-row"/>
+  <rect x="146" y="358" width="126" height="52" rx="6" class="bg-card"/>
+  <rect x="278" y="358" width="126" height="52" rx="6" class="bg-asc"/>
+  <rect x="410" y="358" width="126" height="52" rx="6" class="bg-exp"/>
+  <rect x="542" y="358" width="128" height="52" rx="6" class="bg-dev"/>
+
+  <text x="75"  y="384" text-anchor="middle" dominant-baseline="central" class="row-label">Kosten Betrieb</text>
+  <text x="209" y="384" text-anchor="middle" dominant-baseline="central" class="cell-main tx-card">CoPilot free</text>
+  <text x="341" y="384" text-anchor="middle" dominant-baseline="central" class="cell-main tx-asc">Claude free</text>
+  <text x="473" y="384" text-anchor="middle" dominant-baseline="central" class="cell-main tx-exp">Claude Pro</text>
+  <text x="606" y="384" text-anchor="middle" dominant-baseline="central" class="cell-main tx-dev">Claude Pro</text>
+
+  <!-- ══════════════════════════════════════════════
+       ROW 6 — Enabling Aufwand  (h=88)
+  ══════════════════════════════════════════════ -->
+  <rect x="10"  y="416" width="130" height="88" rx="6" class="bg-row"/>
+  <rect x="146" y="416" width="126" height="88" rx="6" class="bg-card"/>
+  <rect x="278" y="416" width="126" height="88" rx="6" class="bg-asc"/>
+  <rect x="410" y="416" width="126" height="88" rx="6" class="bg-exp"/>
+  <rect x="542" y="416" width="128" height="88" rx="6" class="bg-dev"/>
+
+  <text x="75"  y="460" text-anchor="middle" dominant-baseline="central" class="row-label">Enabling Aufwand</text>
+  <text x="209" y="460" text-anchor="middle" dominant-baseline="central" class="cell-main tx-card">1 Tag</text>
+
+  <text x="341" y="444" text-anchor="middle" dominant-baseline="central" class="cell-main tx-asc">3–4 MT 1:1 /</text>
+  <text x="341" y="462" text-anchor="middle" dominant-baseline="central" class="cell-sub  tx-asc">Remote</text>
+  <text x="341" y="478" text-anchor="middle" dominant-baseline="central" class="cell-sub  tx-asc">+ 1 MT Q&amp;A</text>
+
+  <text x="473" y="460" text-anchor="middle" dominant-baseline="central" class="cell-main tx-exp">2–3 Monate</text>
+  <text x="606" y="460" text-anchor="middle" dominant-baseline="central" class="cell-main tx-dev">Selbststudium</text>
+
+  <!-- ══════════════════════════════════════════════
+       ROW 7 — Firsttime Setup  (h=52)
+  ══════════════════════════════════════════════ -->
+  <rect x="10"  y="510" width="130" height="52" rx="6" class="bg-row"/>
+  <rect x="146" y="510" width="126" height="52" rx="6" class="bg-card"/>
+  <rect x="278" y="510" width="126" height="52" rx="6" class="bg-asc"/>
+  <rect x="410" y="510" width="126" height="52" rx="6" class="bg-exp"/>
+  <rect x="542" y="510" width="128" height="52" rx="6" class="bg-dev"/>
+
+  <text x="75"  y="536" text-anchor="middle" dominant-baseline="central" class="row-label">Firsttime Setup</text>
+  <text x="209" y="536" text-anchor="middle" dominant-baseline="central" class="cell-main tx-card">3h</text>
+  <text x="341" y="536" text-anchor="middle" dominant-baseline="central" class="cell-main tx-asc">2–3 MT</text>
+  <text x="473" y="536" text-anchor="middle" dominant-baseline="central" class="cell-main tx-exp">5–10 MT</text>
+  <text x="606" y="536" text-anchor="middle" dominant-baseline="central" class="cell-main tx-dev">N/A</text>
+
+  <!-- ══════════════════════════════════════════════
+       ROW 8 — Zielgruppe  (h=88)
+  ══════════════════════════════════════════════ -->
+  <rect x="10"  y="568" width="130" height="88" rx="6" class="bg-row"/>
+  <rect x="146" y="568" width="126" height="88" rx="6" class="bg-card"/>
+  <rect x="278" y="568" width="126" height="88" rx="6" class="bg-asc"/>
+  <rect x="410" y="568" width="126" height="88" rx="6" class="bg-exp"/>
+  <rect x="542" y="568" width="128" height="88" rx="6" class="bg-dev"/>
+
+  <text x="75"  y="612" text-anchor="middle" dominant-baseline="central" class="row-label">Zielgruppe</text>
+
+  <text x="209" y="599" text-anchor="middle" dominant-baseline="central" class="cell-main tx-card">Tester /</text>
+  <text x="209" y="617" text-anchor="middle" dominant-baseline="central" class="cell-sub  tx-card">Verein / DU</text>
+
+  <text x="341" y="599" text-anchor="middle" dominant-baseline="central" class="cell-main tx-asc">KMU bis</text>
+  <text x="341" y="617" text-anchor="middle" dominant-baseline="central" class="cell-sub  tx-asc">25 Mitarbeiter</text>
+
+  <text x="473" y="591" text-anchor="middle" dominant-baseline="central" class="cell-main tx-exp">25–100 MA</text>
+  <text x="473" y="609" text-anchor="middle" dominant-baseline="central" class="cell-sub  tx-exp">(nicht Zielgr.)</text>
+  <text x="473" y="627" text-anchor="middle" dominant-baseline="central" class="cell-sub  tx-exp">Esel ≠ Gespann</text>
+
+  <text x="606" y="612" text-anchor="middle" dominant-baseline="central" class="cell-main tx-dev">all welcome</text>
+
+  <!-- ══════════════════════════════════════════════
+       FOOTER — Titel
+  ══════════════════════════════════════════════ -->
+  <text x="340" y="680" text-anchor="middle" dominant-baseline="central"
+        font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#888780">
+    MUNIDELL — Variantenübersicht R+MUNI Blueprint · Stage 1.02
+  </text>
+
+</svg>
